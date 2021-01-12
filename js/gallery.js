@@ -35,34 +35,34 @@ function createGalleryItems(items) {
 }
 
 const bigImg = imgGallery.map(({ original }) => original);
-activeImage(index);
+activeImage;
 
-function activeImage(indexCurrent) {
-  const activeImage = bigImg[indexCurrent];
+function activeImage() {
+  const activeImage = bigImg;
   refs.img.src = activeImage;
 }
 
-function imgModalOpen(evt) {
-  evt.preventDefault();
+function imgModalOpen(event) {
+  event.preventDefault();
   refs.gallery.addEventListener("keydown", modalClose);
-  if (evt.target.nodeName !== "IMG") {
+  if (event.target.nodeName !== "IMG") {
     return;
   }
 
   refs.lightbox.classList.add("is-open");
-  refs.img.src = evt.target.dataset.source;
-  refs.img.alt = evt.target.alt;
+  refs.img.src = event.target.dataset.source;
+  refs.img.alt = event.target.alt;
 }
 
 function modalClose() {
   refs.gallery.removeEventListener("keydown", escModalClose);
   refs.lightbox.classList.remove("is-open");
   refs.img.src = "";
-  clearlightboxImg();
+  clearlightboxImg;
 }
 
-function overleyModalClose(evt) {
-  if (evt.currentTarget === evt.target) {
+function overleyModalClose(event) {
+  if (event.currentTarget === event.target) {
     modalClose();
   }
 }
