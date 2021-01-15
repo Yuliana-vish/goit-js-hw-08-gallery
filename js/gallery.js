@@ -18,6 +18,7 @@ const refs = {
 refs.gallery.addEventListener("click", imgModalOpen);
 refs.modal.addEventListener("click", modalClose);
 refs.overley.addEventListener("click", overleyModalClose);
+refs.gallery.addEventListener("keydown", escModalClose);
 
 const galleryChart = createGalleryItems(imgGallery);
 refs.gallery.innerHTML = galleryChart;
@@ -33,7 +34,6 @@ function createGalleryItems(items) {
     )
     .join("");
 }
-
 const bigImg = imgGallery.map(({ original }) => original);
 activeImage;
 
@@ -44,7 +44,6 @@ function activeImage() {
 
 function imgModalOpen(event) {
   event.preventDefault();
-  refs.gallery.addEventListener("keydown", modalClose);
   if (event.target.nodeName !== "IMG") {
     return;
   }
@@ -55,7 +54,6 @@ function imgModalOpen(event) {
 }
 
 function modalClose() {
-  refs.gallery.removeEventListener("keydown", escModalClose);
   refs.lightbox.classList.remove("is-open");
   refs.img.src = "";
   clearlightboxImg;
